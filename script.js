@@ -1,6 +1,6 @@
 
 const SUPABASE_URL = "https://cassouhzovotgdhzssqg.supabase.co";
-const SUPABASE_KEY = "YOUR_ANON_KEY_HERE"; // Replace this before deploying
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhc3NvdWh6b3ZvdGdkaHpzc3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxMTg5MjYsImV4cCI6MjA2NDY5NDkyNn0.dNg51Yn9aplsyAP9kvsEQOTHWb64edsAk5OqiynEZlk"; // Replace this before deploying
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const OCR_BACKEND_URL = "https://melissa.onrender.com/upload"; // Replace with your actual Render endpoint
