@@ -1,27 +1,35 @@
+// Import Supabase client from CDN (ESM format required for GitHub Pages)
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
+// Supabase credentials
 const SUPABASE_URL = "https://cassouhzovotgdhzssqg.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhc3NvdWh6b3ZvdGdkaHpzc3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxMTg5MjYsImV4cCI6MjA2NDY5NDkyNn0.dNg51Yn9aplsyAP9kvsEQOTHWb64edsAk5OqiynEZlk"; // Replace this before deploying
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhc3NvdWh6b3ZvdGdkaHpzc3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxMTg5MjYsImV4cCI6MjA2NDY5NDkyNn0.dNg51Yn9aplsyAP9kvsEQOTHWb64edsAk5OqiynEZlk";
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const OCR_BACKEND_URL = "https://melissa.onrender.com/upload"; // Replace with your actual Render endpoint
+// Your Render OCR backend endpoint
+const OCR_BACKEND_URL = "https://melissa.onrender.com/upload";
 
-// Upload logic
+// DOM Elements
 const dropzone = document.getElementById("dropzone");
 const fileInput = document.getElementById("fileInput");
 const uploadStatus = document.getElementById("uploadStatus");
 
+// === PDF Upload Logic === //
 dropzone.addEventListener("click", () => fileInput.click());
 
 dropzone.addEventListener("dragover", (e) => {
   e.preventDefault();
   dropzone.classList.add("dragover");
 });
+
 dropzone.addEventListener("dragleave", () => dropzone.classList.remove("dragover"));
+
 dropzone.addEventListener("drop", (e) => {
   e.preventDefault();
   dropzone.classList.remove("dragover");
   handleFiles(e.dataTransfer.files);
 });
+
 fileInput.addEventListener("change", (e) => handleFiles(e.target.files));
 
 function handleFiles(files) {
@@ -29,6 +37,7 @@ function handleFiles(files) {
   Array.from(files).forEach(async (file) => {
     const formData = new FormData();
     formData.append("pdf", file);
+
     const status = document.createElement("div");
     status.textContent = `Uploading ${file.name}...`;
     uploadStatus.appendChild(status);
@@ -38,7 +47,9 @@ function handleFiles(files) {
         method: "POST",
         body: formData,
       });
+
       const result = await response.json();
+
       if (response.ok) {
         status.textContent = `✅ ${file.name} uploaded and processed.`;
       } else {
@@ -50,7 +61,7 @@ function handleFiles(files) {
   });
 }
 
-// Search logic
+// === Pallet Search Logic === //
 async function searchPallets() {
   const input = document.getElementById("palletInput").value;
   const palletIds = input.split(/\s+/).filter(id => id.length === 18);
@@ -62,6 +73,7 @@ async function searchPallets() {
 
   const tbody = document.querySelector("#resultsTable tbody");
   tbody.innerHTML = "";
+
   if (error) {
     alert("Error fetching data: " + error.message);
     return;
