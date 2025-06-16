@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Melissa Pallet ID App</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Upload PDF to Extract Pallet IDs</h1>
+    <div class="upload-box" id="dropzone">
+      <p>Drag and drop PDFs here or click to select files</p>
+      <input type="file" id="fileInput" accept=".pdf" multiple hidden/>
+    </div>
+    <div id="uploadStatus"></div>
+
+    <h2>Search Pallet IDs</h2>
+    <textarea id="palletInput" placeholder="Enter pallet IDs (one per line or space-separated)..."></textarea>
+    <button id="searchButton">Search</button>
+
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th>Pallet ID</th>
+          <th>Document Name</th>
+          <th>Page</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="assets/script.js"></script>
+</body>
+</html>
