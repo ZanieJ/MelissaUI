@@ -1,5 +1,5 @@
 
-const OCR_BACKEND_URL = "https://melissa.onrender.com/upload";
+const OCR_BACKEND_URL = "https://melissa-backend-gtqj.onrender.com/upload";
 
 const dropzone = document.getElementById("dropzone");
 const fileInput = document.getElementById("fileInput");
