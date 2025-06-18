@@ -28,34 +28,30 @@ fileInput.addEventListener("change", () => {
 async function handleFiles(files) {
   uploadStatus.innerHTML = "";
 
-  if (!files.length) return;
-
-  const status = document.createElement("div");
-  status.textContent = `⬆️ Uploading ${files.length} file(s)...`;
-  uploadStatus.appendChild(status);
-
-  const formData = new FormData();
-
   for (const file of files) {
-    formData.append("files", file); // ✅ "files" matches FastAPI's expected input
-  }
+    const status = document.createElement("div");
+    status.textContent = `⬆️ Uploading ${file.name}...`;
+    uploadStatus.appendChild(status);
 
-  try {
-    const response = await fetch(OCR_BACKEND_URL, {
-      method: "POST",
-      body: formData,
-    });
+    const formData = new FormData();
+    formData.append("file", file); // Match FastAPI's expected field name
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    try {
+      const response = await fetch(OCR_BACKEND_URL, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("✅ Server response:", result);
+      status.textContent = `✅ Uploaded ${file.name}`;
+    } catch (err) {
+      console.error("Upload failed:", err);
+      status.textContent = `❌ ${file.name} failed: ${err.message}`;
     }
-
-    const result = await response.json();
-    console.log("Response from backend:", result);
-
-    status.textContent = `✅ Upload complete: ${files.length} file(s).`;
-  } catch (err) {
-    console.error("Upload failed:", err);
-    status.textContent = `❌ Upload failed: ${err.message}`;
   }
 }
