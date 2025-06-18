@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pallet ID Extractor</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2rem; background: #f5f5f5; }
+    #dropzone {
+      border: 3px dashed #aaa;
+      padding: 3rem;
+      background: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    #dropzone.highlight { background-color: #e0ffe0; }
+    #status { margin-top: 1rem; white-space: pre-line; text-align: left; max-width: 600px; margin-inline: auto; }
+  </style>
+</head>
+<body>
+  <h1>Extract Pallet IDs from PDFs</h1>
+  <div id="dropzone">📄 Drop PDF files here or click to upload</div>
+  <input type="file" id="fileInput" accept="application/pdf" multiple hidden />
+  <div id="status"></div>
+  <script>
+    const SUPABASE_URL = "https://cassouhzovotgdhzssqg.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhc3NvdWh6b3ZvdGdkaHpzc3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxMTg5MjYsImV4cCI6MjA2NDY5NDkyNn0.dNg51Yn9aplsyAP9kvsEQOTHWb64edsAk5OqiynEZlk";
+  </script>
+  <script src="main.js"></script>
+</body>
+</html>
