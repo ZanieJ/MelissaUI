@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pallet ID Uploader</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.3/dist/tesseract.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    #dropzone {
+      border: 2px dashed #888;
+      padding: 2rem;
+      margin-top: 2rem;
+      background: #f9f9f9;
+      border-radius: 10px;
+    }
+    .highlight {
+      background: #e0ffe0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Upload PDF to Extract Pallet IDs</h1>
+  <div id="dropzone">Drop your PDF files here</div>
+  <p id="status"></p>
+  <script src="main.js"></script>
+</body>
+</html>
